@@ -6,8 +6,8 @@ app = Flask(__name__)
 def home():
     return render_template('pokemon.html')
 
-@app.route("/a")
-def home():
+@app.route("/detalle")
+def detalle():
     return render_template('detalle.html')
 
 
