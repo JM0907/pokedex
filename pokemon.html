@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex Murillo</title>
+    <title>Pokedex By Michael Villacis</title>
 
     <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='pokeball.jpg')}}">
 
@@ -12,7 +12,7 @@
 
     <style>
         body {
-            background-color: #f8f9fa; /* Añadido un fondo de color gris claro para mayor contraste */
+            background-color: #f8f9fa; 
         }
 
         .container {
@@ -20,7 +20,7 @@
             padding: 20px;
             border-radius: 10px;
             text-align: center;
-            margin-top: 50px; /* Ajustado el margen superior para mayor visibilidad */
+            margin-top: 50px; 
         }
 
         #search-form {
@@ -28,27 +28,32 @@
         }
 
         #search-input {
-            border: 1px solid #000; /* Bordes negros para el input de búsqueda */
-            border-radius: 5px; /* Bordes redondeados */
-            padding: 8px; /* Espaciado interno */
-            width: 60%; /* Ajustado el ancho del input */
+            border: 1px solid #000; 
+            border-radius: 5px; 
+            padding: 8px; 
+            width: 60%; 
         }
 
         #search-button {
-            border: 1px solid #000; /* Bordes negros para el botón de búsqueda */
-            border-radius: 5px; /* Bordes redondeados */
-            padding: 8px 16px; /* Espaciado interno ajustado */
+            border: 1px solid #000; 
+            border-radius: 5px; 
+            padding: 8px 16px; 
         }
     </style>
 </head>
 <body>
     <div class="container text-center">
-        <img src="{{url_for('static', filename='logo.jpeg')}}" class="rounded mx-auto d-block" alt="...">
+        <img src="{{url_for('static', filename='logo.jpg')}}" class="rounded mx-auto d-block" alt="...">
         <form method='post' action="{{ url_for('home') }}" id="search-form" class="mt-3">
-            <center>
-                <input id="search-input" type="text" name="pokemon_name" placeholder="Buscar pokemon" class="form-control">
-                <button id="search-button" type="submit" class="btn btn-primary mt-2">CONSULTAR</button>
-            </center>
+            <div class="form-group">
+                <label for="search">Buscar Pokémon:</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="search-input" name="pokemon_name" placeholder="Ingrese el nombre del Pokémon">
+                    <div class="input-group-append">
+                        <button class="btn btn btn-primary" type="submit" id="search-button">Buscar</button>
+                    </div>
+                </div>
+            </div>
         </form>
 
         <div class="d-flex justify-content-center">
@@ -61,8 +66,9 @@
                         <p class="card-text">Weight:{{ pokemon.weight }}</p>
                         <p class="card-text">Order:{{ pokemon.order }}</p>
                         <p class="card-text">Type:{{ pokemon.type }}</p>
+                        <p class="card-text">Speed:{{ pokemon.speed }}</p>
                         <a href="#" class="btn btn-primary">Capturar</a>
-                        <a href="{{ url_for('detalle')}}" class="btn btn-primary">Detalle</a>
+                        <a href="{{ url_for('detalle',hp=pokemon.hp, attack=pokemon.attack, defence=pokemon.defence, speed=pokemon.speed) }}" class="btn btn-primary">Detalle</a>
                     </div>
                 </div>
             {% else %}
